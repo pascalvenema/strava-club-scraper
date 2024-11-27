@@ -49,7 +49,7 @@ if sys.platform in {'win32', 'darwin'}:
 # Required: config['GENERAL']['DATE_MIN'], config['GENERAL']['DATE_MAX'], config['GENERAL']['TIMEZONE'], config['STRAVA']['LOGIN'], config['STRAVA']['PASSWORD'], config['STRAVA']['CLUB_IDS']
 # Optional: config['GENERAL']['ACTIVITIES_TYPE'], config['STRAVA']['CLUB_MEMBERS_TEAMS'], config['GOOGLE_DOCS']['SHEET_ID']
 config = configparser.ConfigParser()
-config.read(filenames=os.path.join(os.getcwd(), 'strava-club-scraper', 'settings', 'config.ini'), encoding='utf-8')
+config.read(filenames=os.path.join(os.getcwd(), 'strava_club_scraper', 'settings', 'config.ini'), encoding='utf-8')
 # config.read_file(
 #     f=StringIO(
 #         """
@@ -72,7 +72,7 @@ config.read(filenames=os.path.join(os.getcwd(), 'strava-club-scraper', 'settings
 # )
 
 ## Google API
-google_api_key = os.path.join(os.getcwd(), 'strava-club-scraper', 'settings', 'keys.json')
+google_api_key = os.path.join(os.getcwd(), 'strava_club_scraper', 'settings', 'keys.json')
 if os.path.exists(google_api_key) is False:
     google_api_key = None
 
@@ -698,7 +698,7 @@ def strava_export_activities(*, strava_login, strava_password, activities_id, fi
 def strava_club_members(*, strava_login, strava_password, club_ids, club_members_teams=None, timezone='UTC'):
     """Scraps and imports members of one or multiple Strava Club(s) to a dataset."""
     # Settings and variables
-    geolocator = Nominatim(user_agent='strava-club-scraper')
+    geolocator = Nominatim(user_agent='strava_club_scraper')
     geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
 
     # Strava login
