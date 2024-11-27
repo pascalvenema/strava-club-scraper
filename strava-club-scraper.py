@@ -191,14 +191,16 @@ def strava_authentication(*, strava_login, strava_password):
 
         # Reject cookies
         try:
-            driver.find_element(by=By.XPATH, value='.//button[@class="btn-deny-cookie-banner"]').click()
+            driver.find_element(
+                by=By.XPATH, value='.//button[@data-cy="deny-cookies"]'
+            ).click()
 
         except NoSuchElementException:
             pass
 
         # Login
-        driver.find_element(by=By.ID, value='email').send_keys(strava_login)
-        driver.find_element(by=By.ID, value='password').send_keys(strava_password)
+        driver.find_element(by=By.ID, value="desktop-email").send_keys(strava_login)
+        driver.find_element(by=By.ID, value='desktop-current-password').send_keys(strava_password)
         time.sleep(2)
 
         driver.find_element(by=By.XPATH, value='.//*[@type="submit"]').submit()
